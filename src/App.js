@@ -34,7 +34,23 @@ class App extends Component {
             .catch(response => {
                 console.log(response);
             });
-        // this.fetchShipments();
+        this.fetchShipments();
+    };
+
+    deleteShipment = (id) => {
+        axios({
+            method: 'delete',
+            url: `https://api.aftership.com/v4/trackings/${id}`,
+            headers:
+                {'aftership-api-key': '8742d0d1-9845-4c2f-8dfa-ed28c3430c2a',},
+        })
+            .then((response => {
+                console.log(response.data);
+            }))
+            .catch(response => {
+                console.log(response);
+            });
+        this.fetchShipments();
     };
 
     componentDidMount() {
@@ -72,8 +88,10 @@ class App extends Component {
                     <ShipmentAdder addNewShipment={this.addNewShipment}/>
                 </Row>
                 <Row>
-                    <Col><Shipments title='shipments on the way' shipments={this.state.shipmentsInDelivery}/></Col>
-                    <Col><Shipments title='shipments delivered' shipments={this.state.shipmentsDelivered}/></Col>
+                    <Col><Shipments title='shipments on the way' shipments={this.state.shipmentsInDelivery}
+                                    deleteShipment={this.deleteShipment}/></Col>
+                    <Col><Shipments title='shipments delivered' shipments={this.state.shipmentsDelivered}
+                                    deleteShipment={this.deleteShipment}/></Col>
                 </Row>
                 <hr/>
                 <ShipmentTracker title='shipment checkpoint' shipmentId={this.state.shipmentId}/>
