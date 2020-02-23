@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Shipments from "./components/Shipments";
+import axios from 'axios';
 
 class App extends Component {
     render() {
