@@ -5,7 +5,7 @@ export default class Shipment extends React.Component {
     render() {
         return (
           <>
-              <ListGroupItem className="justify-content-between">{this.props.trackingNumber} <Badge pill>Badge</Badge></ListGroupItem>
+              <ListGroupItem className="justify-content-between"><Badge>{this.props.shipment.slug.toUpperCase()}</Badge> {this.props.shipment.tracking_number} <Badge pill>{this.props.shipment.tag}</Badge></ListGroupItem>
           </>
         );
     }

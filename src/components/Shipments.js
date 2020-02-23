@@ -6,7 +6,7 @@ export default class Shipments extends React.Component {
 
     mapShipments = () => {
         return this.props.shipments.map((shipment, key) => {
-           return <Shipment trackingNumber={shipment.tracking_number} key={key}/>
+           return <Shipment shipment={shipment} key={key}/>
         });
     };
 
