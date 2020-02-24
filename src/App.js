@@ -13,7 +13,8 @@ class App extends Component {
             shipmentsInDelivery: [],
             shipmentsDelivered: [],
             shipmentId: 'Please select a shipment to track',
-        }
+            importantItems: [],
+        };
     }
 
     addNewShipment = (tracking_number, nickname) => {
@@ -121,6 +122,21 @@ class App extends Component {
         }));
     };
 
+    // deleteAllUnImportantShipments = () => {
+    //   const importShipments = this.state.import
+    // };
+
+    markImportant = (id) => {
+        if(this.state.importantItems.includes(id)) {
+            const importantItems = [... this.state.importantItems];
+            importantItems[this.state.importantItems.indexOf(id)] = null;
+            this.setState({importantItems});
+        }
+        else this.setState({
+            importantItems: [... this.state.importantItems, id],
+        });
+    };
+
     componentDidMount() {
         this.fetchShipments();
     }
@@ -158,9 +174,11 @@ class App extends Component {
                 </Row>
                 <Row>
                     <Col><Shipments title='shipments on the way' shipments={this.state.shipmentsInDelivery}
-                                    deleteShipment={this.deleteShipment}/></Col>
+                                    deleteShipment={this.deleteShipment} markImportant={this.markImportant}
+                                    importantItems={this.state.importantItems}/></Col>
                     <Col><Shipments title='shipments delivered' shipments={this.state.shipmentsDelivered}
-                                    deleteShipment={this.deleteShipment}/></Col>
+                                    deleteShipment={this.deleteShipment} markImportant={this.markImportant}
+                                    importantItems={this.state.importantItems}/></Col>
                 </Row>
                 <Row>
                     <Col>
@@ -171,7 +189,12 @@ class App extends Component {
                     </Col>
                 </Row>
                 <Row className='justify-content-center'>
+                    <Col>
                         <Button color='danger' className='mt-5 text-center' onClick={this.deleteAllShipments}>!!! Delete All Shipments !!!</Button>
+                    </Col>
+                    <Col>
+                        <Button color='danger' className='mt-5 text-center' onClick={this.deleteAllUnImportantShipments}>!!! Delete All Shipments !!!</Button>
+                    </Col>
                 </Row>
                 <hr/>
                 <ShipmentTracker title='shipment checkpoint' shipmentId={this.state.shipmentId}/>
