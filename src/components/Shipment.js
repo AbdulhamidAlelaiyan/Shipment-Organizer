@@ -1,13 +1,30 @@
 import React from 'react';
-import {Badge, ListGroupItem, Button} from "reactstrap";
+import {Badge, ListGroupItem, Button, Input} from "reactstrap";
 
 export default class Shipment extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            editor: false,
+            newNickname: localStorage.getItem(this.props.shipment.id),
+        };
+    }
     render() {
         return (
           <>
               <ListGroupItem className={"justify-content-between" + (this.props.important ? ' bg-primary' : '')}>
                     <Badge className='mr-3'>{this.props.shipment.slug.toUpperCase()}</Badge>
-                    {this.props.shipment.tracking_number} || {localStorage.getItem(this.props.shipment.id)}
+                    {this.props.shipment.tracking_number} ||
+                  {     ! this.state.editor
+                        ? <span onClick={() => this.setState({editor: !this.state.editor})}>{localStorage.getItem(this.props.shipment.id)}</span>
+                        : <form onSubmit={() => {localStorage.setItem(this.props.shipment.id, this.state.newNickname);
+                                                 this.setState({editor: !this.state.editor})
+                        }}>
+                            <Input type='text' onChange={(event) => this.setState({newNickname: event.target.value})}
+                                value={this.state.newNickname}/>
+                          </form>
+                  }
                     <Badge pill className='ml-3'>{this.props.shipment.tag}</Badge>
                     <Button color='danger' className='ml-3 btn-sm'
                             onClick={() => this.props.deleteShipment(this.props.shipment.id)}>Delete</Button> {' '}
