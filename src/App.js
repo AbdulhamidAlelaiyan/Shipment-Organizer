@@ -15,7 +15,7 @@ class App extends Component {
             shipmentsDelivered: [],
             shipmentId: 'Please select a shipment to track',
             importantItems: [],
-            messages: [],
+            alertMessage: {message: '', status: ''},
         };
     }
 
@@ -37,11 +37,13 @@ class App extends Component {
                 if(response.data.data.tracking.tag === 'Delivered') {
                     this.setState({
                         shipmentsDelivered: [...this.state.shipmentsDelivered, response.data.data.tracking],
+                        alertMessage: {message: 'Shipment Added', status: 'success'},
                     });
                 }
                 else {
                     this.setState({
                         shipmentsInDelivery: [...this.state.shipmentsInDelivery, response.data.data.tracking],
+                        alertMessage: {message: 'Shipment Added', status: 'success'},
                     });
                 }
             }))
@@ -60,6 +62,9 @@ class App extends Component {
             .then((response => {
                 console.log('delete shipments', response.data);
                 this.fetchShipments();
+                this.setState({
+                    alertMessage: {message: 'Shipment Deleted', status: 'danger'},
+                });
             }))
             .catch(response => {
                 console.log(response);
@@ -78,6 +83,9 @@ class App extends Component {
               .then((response => {
                   console.log('delete shipments', response.data);
                   this.fetchShipments();
+                  this.setState({
+                      alertMessage: {message: 'All Shipments Deleted', status: 'danger'},
+                  });
               }))
               .catch(response => {
                   console.log(response);
@@ -97,6 +105,9 @@ class App extends Component {
               .then((response => {
                   console.log('delete shipments', response.data);
                   this.fetchShipments();
+                  this.setState({
+                      alertMessage: {message: 'All in Delivery Shipment Deleted', status: 'danger'},
+                  });
               }))
               .catch(response => {
                   console.log(response);
@@ -117,6 +128,9 @@ class App extends Component {
                 .then((response => {
                     console.log('delete shipments', response.data);
                     this.fetchShipments();
+                    this.setState({
+                        alertMessage: {message: 'All Delivered Shipments deleted', status: 'danger'},
+                    });
                 }))
                 .catch(response => {
                     console.log(response);
@@ -137,7 +151,7 @@ class App extends Component {
         if(this.state.importantItems.includes(id)) {
             const importantItems = [... this.state.importantItems];
             importantItems[this.state.importantItems.indexOf(id)] = null;
-            this.setState({importantItems});
+            this.setState({importantItems,});
         }
         else this.setState({
             importantItems: [... this.state.importantItems, id],
@@ -164,35 +178,17 @@ class App extends Component {
                     shipmentsInDelivery,
                     shipmentsDelivered,
                 });
-                console.log('set state was called');
             })
             .catch(response => {
                 console.log(response);
             });
     };
 
-    getOneMessage = () => {
-      const newMessagesArray = [... this.state.messages];
-      const message = newMessagesArray.pop();
-      this.setState({
-          messages: newMessagesArray,
-      });
-      return message;
-    };
-
-    setOneMessage = (message) => {
-        const newMessagesArray = [... this.state.messages];
-        newMessagesArray.push(message);
-        this.setState({
-            messages: newMessagesArray,
-        });
-    };
-
     render() {
         return (
             <Container>
                 <h1 className='text-center'>📦Shipments Organizer📦</h1>
-                <Alerts messages={this.getMessages}/>
+                <Alerts alertMessage={this.state.alertMessage}/>
                 <ShipmentAdder addNewShipment={this.addNewShipment}/>
                 <Row className='justify-content-center'>
                     <Button color='success'  className='mt-5' onClick={this.fetchShipments}>Refresh Shipment Data</Button>
