@@ -168,6 +168,9 @@ class App extends Component {
                         <Button color='danger' className='mt-2' onClick={this.deleteDeliveredShipments}>Delete All Delivered Shipments</Button>
                     </Col>
                 </Row>
+                <Row className='justify-content-center'>
+                        <Button color='danger' className='mt-5 text-center' onClick={this.deleteAllShipments}>!!! Delete All Shipments !!!</Button>
+                </Row>
                 <hr/>
                 <ShipmentTracker title='shipment checkpoint' shipmentId={this.state.shipmentId}/>
             </Container>
