@@ -154,6 +154,9 @@ class App extends Component {
                 <Row>
                     <ShipmentAdder addNewShipment={this.addNewShipment}/>
                 </Row>
+                <Row className='justify-content-center'>
+                    <Button color='success' onClick={this.fetchShipments}>Refresh Shipment Data</Button>
+                </Row>
                 <Row>
                     <Col><Shipments title='shipments on the way' shipments={this.state.shipmentsInDelivery}
                                     deleteShipment={this.deleteShipment}/></Col>
