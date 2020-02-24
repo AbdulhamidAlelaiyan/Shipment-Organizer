@@ -29,12 +29,23 @@ class App extends Component {
             }
         })
             .then((response => {
-                console.log(response.data);
+                console.log('add new shipments' , response.data);
+                if(response.data.data.tracking.tag === 'Delivered') {
+                    this.setState({
+                        shipmentsDelivered: [...this.state.shipmentsDelivered, response.data.data.tracking]
+                    });
+                }
+                else {
+                    this.setState({
+                        shipmentsInDelivery: [...this.state.shipmentsInDelivery, response.data.data.tracking]
+                    });
+                }
+                // this.fetchShipments()
+                // setTimeout(this.fetchShipments(), 500);
             }))
             .catch(response => {
                 console.log(response);
             });
-        this.fetchShipments();
     };
 
     deleteShipment = (id) => {
@@ -45,12 +56,12 @@ class App extends Component {
                 {'aftership-api-key': '8742d0d1-9845-4c2f-8dfa-ed28c3430c2a',},
         })
             .then((response => {
-                console.log(response.data);
+                console.log('delete shipments', response.data);
+                this.fetchShipments();
             }))
             .catch(response => {
                 console.log(response);
             });
-        this.fetchShipments();
     };
 
     componentDidMount() {
@@ -66,13 +77,14 @@ class App extends Component {
         })
             .then(response => {
                 const shipments = response.data.data.trackings;
-                // console.log(shipments);
+                console.log('fetch shipments:', shipments);
                 const shipmentsDelivered = shipments.filter((shipment) => shipment.tag === 'Delivered');
                 const shipmentsInDelivery = shipments.filter((shipment) => shipment.tag !== 'Delivered');
                 this.setState({
                     shipmentsInDelivery,
                     shipmentsDelivered,
                 });
+                console.log('set state was called');
             })
             .catch(response => {
                 console.log(response);
