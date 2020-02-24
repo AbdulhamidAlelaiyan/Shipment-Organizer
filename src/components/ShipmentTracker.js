@@ -6,8 +6,7 @@ export default class ShipmentTracker extends React.Component {
         return (
           <>
               <h1 className='text-center'>{this.props.shipmentId}</h1>
-              <ListGroup>
-              </ListGroup>
+              {/* TODO: Add Card Item */}
           </>
         );
     }

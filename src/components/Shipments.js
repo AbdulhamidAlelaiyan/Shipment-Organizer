@@ -4,9 +4,27 @@ import {ListGroup} from "reactstrap";
 
 export default class Shipments extends React.Component {
 
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            importantItems: [],
+        };
+    }
+
+    markImportant = (id) => {
+        this.setState({
+            importantItems: [... this.state.importantItems, id],
+        });
+    };
+
+
     mapShipments = () => {
         return this.props.shipments.map((shipment, key) => {
-           return <Shipment shipment={shipment} key={key} deleteShipment={this.props.deleteShipment}/>
+            let important = false;
+            if(this.state.importantItems.includes(shipment.id)) important = true;
+           return <Shipment shipment={shipment} key={key} deleteShipment={this.props.deleteShipment}
+                            markImportant={() => this.markImportant(shipment.id)} important={important}/>
         });
     };
 
