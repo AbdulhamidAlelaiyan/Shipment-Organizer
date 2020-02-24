@@ -4,6 +4,7 @@ import ShipmentTracker from "./components/ShipmentTracker";
 import ShipmentAdder from "./components/ShipmentAdder";
 import { Container, Col, Row, Button } from 'reactstrap';
 import axios from 'axios';
+import Alerts from './components/Alerts';
 
 class App extends Component {
     constructor(props) {
@@ -14,6 +15,7 @@ class App extends Component {
             shipmentsDelivered: [],
             shipmentId: 'Please select a shipment to track',
             importantItems: [],
+            messages: [],
         };
     }
 
@@ -169,10 +171,28 @@ class App extends Component {
             });
     };
 
+    getOneMessage = () => {
+      const newMessagesArray = [... this.state.messages];
+      const message = newMessagesArray.pop();
+      this.setState({
+          messages: newMessagesArray,
+      });
+      return message;
+    };
+
+    setOneMessage = (message) => {
+        const newMessagesArray = [... this.state.messages];
+        newMessagesArray.push(message);
+        this.setState({
+            messages: newMessagesArray,
+        });
+    };
+
     render() {
         return (
             <Container>
                 <h1 className='text-center'>📦Shipments Organizer📦</h1>
+                <Alerts messages={this.getMessages}/>
                 <ShipmentAdder addNewShipment={this.addNewShipment}/>
                 <Row className='justify-content-center'>
                     <Button color='success'  className='mt-5' onClick={this.fetchShipments}>Refresh Shipment Data</Button>
