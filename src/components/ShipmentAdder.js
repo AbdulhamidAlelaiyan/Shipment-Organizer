@@ -1,24 +1,31 @@
 import React, {Component} from 'react';
-import {Input, Button} from 'reactstrap';
+import {Input, Button, Row, Col} from 'reactstrap';
 
 class ShipmentAdder extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            newNumber: null,
+            NewShipmentNumber: null,
+            NewShipmentNickname: null,
         };
     }
 
-    updateNewShipment = (event) => this.setState({newNumber: event.target.value});
+    updateNewShipmentNumber = (event) => this.setState({NewShipmentNumber: event.target.value});
+    updateNewShipmentNickname = (event) => this.setState({NewShipmentNickname: event.target.value});
 
     render() {
         return (
-            <>
-                New Shipment: <Input className='d-inline' onChange={this.updateNewShipment} type="text"/>
-                <Button onClick={() => this.state.newNumber ? this.props.addNewShipment(this.state.newNumber) : null}
-                        className='primary mt-1'>Add Shipment</Button>
-            </>
+            <Row className='align-items-center justify-content-center'>
+                <Col>New Shipment: <Input onChange={this.updateNewShipmentNumber} type="text"/></Col>
+                <Col>Nickname:     <Input onChange={this.updateNewShipmentNickname} type="text"/></Col>
+
+                <Col><Button onClick={() => this.state.NewShipmentNumber && this.state.NewShipmentNickname
+                    ? this.props.addNewShipment(this.state.NewShipmentNumber, this.state.NewShipmentNickname)
+                    : null}
+                        className='primary mt-3'>Add Shipment</Button>
+                </Col>
+            </Row>
         );
     }
 }

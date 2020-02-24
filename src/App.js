@@ -16,7 +16,7 @@ class App extends Component {
         }
     }
 
-    addNewShipment = (tracking_number) => {
+    addNewShipment = (tracking_number, nickname) => {
         axios({
             method: 'post',
             url: 'https://api.aftership.com/v4/trackings',
@@ -30,14 +30,15 @@ class App extends Component {
         })
             .then((response => {
                 console.log('add new shipments' , response.data);
+                localStorage.setItem(response.data.data.tracking.id, nickname);
                 if(response.data.data.tracking.tag === 'Delivered') {
                     this.setState({
-                        shipmentsDelivered: [...this.state.shipmentsDelivered, response.data.data.tracking]
+                        shipmentsDelivered: [...this.state.shipmentsDelivered, response.data.data.tracking],
                     });
                 }
                 else {
                     this.setState({
-                        shipmentsInDelivery: [...this.state.shipmentsInDelivery, response.data.data.tracking]
+                        shipmentsInDelivery: [...this.state.shipmentsInDelivery, response.data.data.tracking],
                     });
                 }
             }))
@@ -151,11 +152,9 @@ class App extends Component {
         return (
             <Container>
                 <h1 className='text-center'>📦Shipments Organizer📦</h1>
-                <Row>
-                    <ShipmentAdder addNewShipment={this.addNewShipment}/>
-                </Row>
+                <ShipmentAdder addNewShipment={this.addNewShipment}/>
                 <Row className='justify-content-center'>
-                    <Button color='success' onClick={this.fetchShipments}>Refresh Shipment Data</Button>
+                    <Button color='success'  className='mt-5' onClick={this.fetchShipments}>Refresh Shipment Data</Button>
                 </Row>
                 <Row>
                     <Col><Shipments title='shipments on the way' shipments={this.state.shipmentsInDelivery}
