@@ -13,7 +13,12 @@ export default class Shipments extends React.Component {
     }
 
     markImportant = (id) => {
-        this.setState({
+        if(this.state.importantItems.includes(id)) {
+            const importantItems = [... this.state.importantItems];
+            importantItems[this.state.importantItems.indexOf(id)] = null;
+            this.setState({importantItems});
+        }
+        else this.setState({
             importantItems: [... this.state.importantItems, id],
         });
     };
