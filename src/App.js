@@ -40,8 +40,6 @@ class App extends Component {
                         shipmentsInDelivery: [...this.state.shipmentsInDelivery, response.data.data.tracking]
                     });
                 }
-                // this.fetchShipments()
-                // setTimeout(this.fetchShipments(), 500);
             }))
             .catch(response => {
                 console.log(response);
@@ -51,7 +49,7 @@ class App extends Component {
     deleteShipment = (id) => {
         axios({
             method: 'delete',
-            url: `https://api.aftership.com/v4/trackings/${id}`,
+            url: `https://cors-anywhere.herokuapp.com/https://api.aftership.com/v4/trackings/${id}`,
             headers:
                 {'aftership-api-key': '8742d0d1-9845-4c2f-8dfa-ed28c3430c2a',},
         })
