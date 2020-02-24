@@ -122,9 +122,14 @@ class App extends Component {
         }));
     };
 
-    // deleteAllUnImportantShipments = () => {
-    //   const importShipments = this.state.import
-    // };
+    deleteAllUnImportantShipments = () => {
+        this.state.shipmentsInDelivery.forEach(shipment =>  !this.state.importantItems.includes(shipment.id)
+                                                            ? this.deleteShipment(shipment.id)
+                                                            : null);
+        this.state.shipmentsDelivered.forEach(shipment =>   !this.state.importantItems.includes(shipment.id)
+                                                            ? this.deleteShipment(shipment.id)
+                                                            : null);
+    };
 
     markImportant = (id) => {
         if(this.state.importantItems.includes(id)) {
@@ -193,7 +198,7 @@ class App extends Component {
                         <Button color='danger' className='mt-5 text-center' onClick={this.deleteAllShipments}>!!! Delete All Shipments !!!</Button>
                     </Col>
                     <Col>
-                        <Button color='danger' className='mt-5 text-center' onClick={this.deleteAllUnImportantShipments}>!!! Delete All Shipments !!!</Button>
+                        <Button color='danger' className='mt-5 text-center' onClick={this.deleteAllUnImportantShipments}>!!! Delete All Unimportant Shipments !!!</Button>
                     </Col>
                 </Row>
                 <hr/>
