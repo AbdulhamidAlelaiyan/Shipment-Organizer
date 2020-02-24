@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import Shipments from "./components/Shipments";
 import ShipmentTracker from "./components/ShipmentTracker";
 import ShipmentAdder from "./components/ShipmentAdder";
-import { Container, Col, Row } from 'reactstrap';
+import { Container, Col, Row, Button } from 'reactstrap';
 import axios from 'axios';
 
 class App extends Component {
@@ -62,6 +62,64 @@ class App extends Component {
             });
     };
 
+    deleteAllShipments = () => {
+      const shipments = [...this.state.shipmentsDelivered, ...this.state.shipmentsInDelivery];
+      shipments.forEach((shipment) => {
+          axios({
+              method: 'delete',
+              url: `https://cors-anywhere.herokuapp.com/https://api.aftership.com/v4/trackings/${shipment.id}`,
+              headers:
+                  {'aftership-api-key': '8742d0d1-9845-4c2f-8dfa-ed28c3430c2a',},
+          })
+              .then((response => {
+                  console.log('delete shipments', response.data);
+                  this.fetchShipments();
+              }))
+              .catch(response => {
+                  console.log(response);
+              });
+      });
+    };
+
+    deleteInDeliveryShipments = () => {
+      const InDeliveryShipments = [...this.state.shipmentsInDelivery];
+      InDeliveryShipments.forEach((shipment => {
+          axios({
+              method: 'delete',
+              url: `https://cors-anywhere.herokuapp.com/https://api.aftership.com/v4/trackings/${shipment.id}`,
+              headers:
+                  {'aftership-api-key': '8742d0d1-9845-4c2f-8dfa-ed28c3430c2a',},
+          })
+              .then((response => {
+                  console.log('delete shipments', response.data);
+                  this.fetchShipments();
+              }))
+              .catch(response => {
+                  console.log(response);
+              });
+          this.fetchShipments();
+      }));
+    };
+
+    deleteDeliveredShipments = () => {
+        const DeliveredShipments = [...this.state.shipmentsDelivered];
+        DeliveredShipments.forEach((shipment => {
+            axios({
+                method: 'delete',
+                url: `https://cors-anywhere.herokuapp.com/https://api.aftership.com/v4/trackings/${shipment.id}`,
+                headers:
+                    {'aftership-api-key': '8742d0d1-9845-4c2f-8dfa-ed28c3430c2a',},
+            })
+                .then((response => {
+                    console.log('delete shipments', response.data);
+                    this.fetchShipments();
+                }))
+                .catch(response => {
+                    console.log(response);
+                });
+        }));
+    };
+
     componentDidMount() {
         this.fetchShipments();
     }
@@ -90,7 +148,6 @@ class App extends Component {
     };
 
     render() {
-
         return (
             <Container>
                 <h1 className='text-center'>📦Shipments Organizer📦</h1>
@@ -102,6 +159,14 @@ class App extends Component {
                                     deleteShipment={this.deleteShipment}/></Col>
                     <Col><Shipments title='shipments delivered' shipments={this.state.shipmentsDelivered}
                                     deleteShipment={this.deleteShipment}/></Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <Button color='danger' className='mt-2' onClick={this.deleteInDeliveryShipments}>Delete All In Delivery Shipments</Button>
+                    </Col>
+                    <Col>
+                        <Button color='danger' className='mt-2' onClick={this.deleteDeliveredShipments}>Delete All Delivered Shipments</Button>
+                    </Col>
                 </Row>
                 <hr/>
                 <ShipmentTracker title='shipment checkpoint' shipmentId={this.state.shipmentId}/>
