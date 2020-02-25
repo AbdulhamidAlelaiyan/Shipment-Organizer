@@ -10,7 +10,6 @@ import base from "./base";
 class App extends Component {
     constructor(props) {
         super(props);
-
         this.state = {
             shipmentsInDelivery: [],
             shipmentsDelivered: [],
@@ -223,7 +222,6 @@ class App extends Component {
                     shipmentsInDelivery,
                     shipmentsDelivered,
                 });
-
             })
             .catch(response => {
                 console.log(response);
