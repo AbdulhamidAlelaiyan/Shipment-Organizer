@@ -5,6 +5,7 @@ import ShipmentAdder from "./components/ShipmentAdder";
 import { Container, Col, Row, Button } from 'reactstrap';
 import axios from 'axios';
 import Alerts from './components/Alerts';
+import base from "./base";
 
 class App extends Component {
     constructor(props) {
@@ -174,8 +175,19 @@ class App extends Component {
         });
     };
 
-    componentDidMount() {
-        this.fetchShipments();
+     componentDidMount() {
+         this.fetchShipments();
+
+         this.ref = base.syncState('shipments', {
+            context: this,
+            state: 'importantItems',
+            asArray:true,
+        });
+
+    }
+
+    componentWillUnmount() {
+        base.removeBinding(this.ref);
     }
 
     fetchShipmentTracking = (id) => {
@@ -211,6 +223,7 @@ class App extends Component {
                     shipmentsInDelivery,
                     shipmentsDelivered,
                 });
+
             })
             .catch(response => {
                 console.log(response);

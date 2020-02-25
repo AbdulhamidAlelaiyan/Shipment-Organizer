@@ -6,6 +6,7 @@ export default class Shipments extends React.Component {
     mapShipments = () => {
         return this.props.shipments.map((shipment, key) => {
             let important = false;
+            console.log('9 Error:',this.props.importantItems);
             if(this.props.importantItems.includes(shipment.id)) important = true;
            return <Shipment shipment={shipment}
                             key={key}
