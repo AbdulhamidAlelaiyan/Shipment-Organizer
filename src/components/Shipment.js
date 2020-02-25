@@ -1,5 +1,6 @@
 import React from 'react';
 import {Badge, ListGroupItem, Button, Input} from "reactstrap";
+import PropTypes from 'prop-types';
 
 export default class Shipment extends React.Component {
     constructor(props) {
@@ -10,6 +11,7 @@ export default class Shipment extends React.Component {
             newNickname: localStorage.getItem(this.props.shipment.id),
         };
     }
+
     render() {
         return (
           <>

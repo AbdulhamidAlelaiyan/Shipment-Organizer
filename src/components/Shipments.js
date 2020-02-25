@@ -1,8 +1,19 @@
 import React, {useLayoutEffect} from 'react';
 import Shipment from './Shipment';
 import {ListGroup} from "reactstrap";
+import PropTypes from 'prop-types';
 
 export default class Shipments extends React.Component {
+
+    static propTypes = {
+        title: PropTypes.string.isRequired,
+        shipments: PropTypes.array.isRequired,
+        deleteShipment: PropTypes.func.isRequired,
+        markImportant: PropTypes.func.isRequired,
+        importantItems: PropTypes.array.isRequired,
+        fetchShipmentTracking: PropTypes.func.isRequired,
+    };
+
     mapShipments = () => {
         return this.props.shipments.map((shipment, key) => {
             let important = false;
