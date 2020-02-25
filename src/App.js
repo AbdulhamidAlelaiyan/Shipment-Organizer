@@ -25,7 +25,7 @@ class App extends Component {
             method: 'post',
             url: 'https://api.aftership.com/v4/trackings',
             headers:
-                {'aftership-api-key': '8742d0d1-9845-4c2f-8dfa-ed28c3430c2a',},
+                {'aftership-api-key': 'a3065974-e0d2-4819-b187-44ec982ae9ad',},
             data: {
                 tracking: {
                     tracking_number,
@@ -61,7 +61,7 @@ class App extends Component {
             method: 'delete',
             url: `https://cors-anywhere.herokuapp.com/https://api.aftership.com/v4/trackings/${id}`,
             headers:
-                {'aftership-api-key': '8742d0d1-9845-4c2f-8dfa-ed28c3430c2a',},
+                {'aftership-api-key': 'a3065974-e0d2-4819-b187-44ec982ae9ad',},
         })
             .then((response => {
                 console.log('delete shipments', response.data);
@@ -85,7 +85,7 @@ class App extends Component {
               method: 'delete',
               url: `https://cors-anywhere.herokuapp.com/https://api.aftership.com/v4/trackings/${shipment.id}`,
               headers:
-                  {'aftership-api-key': '8742d0d1-9845-4c2f-8dfa-ed28c3430c2a',},
+                  {'aftership-api-key': 'a3065974-e0d2-4819-b187-44ec982ae9ad',},
           })
               .then((response => {
                   console.log('delete shipments', response.data);
@@ -110,7 +110,7 @@ class App extends Component {
               method: 'delete',
               url: `https://cors-anywhere.herokuapp.com/https://api.aftership.com/v4/trackings/${shipment.id}`,
               headers:
-                  {'aftership-api-key': '8742d0d1-9845-4c2f-8dfa-ed28c3430c2a',},
+                  {'aftership-api-key': 'a3065974-e0d2-4819-b187-44ec982ae9ad',},
           })
               .then((response => {
                   console.log('delete shipments', response.data);
@@ -136,7 +136,7 @@ class App extends Component {
                 method: 'delete',
                 url: `https://cors-anywhere.herokuapp.com/https://api.aftership.com/v4/trackings/${shipment.id}`,
                 headers:
-                    {'aftership-api-key': '8742d0d1-9845-4c2f-8dfa-ed28c3430c2a',},
+                    {'aftership-api-key': 'a3065974-e0d2-4819-b187-44ec982ae9ad',},
             })
                 .then((response => {
                     console.log('delete shipments', response.data);
@@ -194,7 +194,7 @@ class App extends Component {
             method: 'get',
             url: `https://api.aftership.com/v4/trackings/${id}`,
             headers:
-                {'aftership-api-key': '8742d0d1-9845-4c2f-8dfa-ed28c3430c2a',}
+                {'aftership-api-key': 'a3065974-e0d2-4819-b187-44ec982ae9ad',}
         })
             .then(response => {
                 this.setState({
@@ -211,7 +211,7 @@ class App extends Component {
             method: 'get',
             url: 'https://api.aftership.com/v4/trackings',
             headers:
-                {'aftership-api-key': '8742d0d1-9845-4c2f-8dfa-ed28c3430c2a',}
+                {'aftership-api-key': 'a3065974-e0d2-4819-b187-44ec982ae9ad',}
         })
             .then(response => {
                 const shipments = response.data.data.trackings;
