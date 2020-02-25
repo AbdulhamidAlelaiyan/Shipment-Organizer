@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Input, Button, Row, Col} from 'reactstrap';
+import PropTypes from 'prop-types';
 
 class ShipmentAdder extends Component {
     constructor(props) {
@@ -10,6 +11,10 @@ class ShipmentAdder extends Component {
             NewShipmentNickname: null,
         };
     }
+
+    static propTypes = {
+        addNewShipment: PropTypes.func.isRequired,
+    };
 
     updateNewShipmentNumber = (event) => this.setState({NewShipmentNumber: event.target.value});
     updateNewShipmentNickname = (event) => this.setState({NewShipmentNickname: event.target.value});

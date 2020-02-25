@@ -267,7 +267,7 @@ class App extends Component {
                     </Col>
                 </Row>
                 <hr/>
-                <ShipmentTracker title='shipment checkpoint' shipmentCheckpoints={this.state.shipmentCheckpoints}/>
+                <ShipmentTracker shipmentCheckpoints={this.state.shipmentCheckpoints}/>
             </Container>
         );
     }
