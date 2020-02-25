@@ -18,5 +18,6 @@ A React shipment app that organize shipments into lists
 5. Axios 
 6. Bootstrap 
 7. Reactstrap
-8. Postman 
-9. PHPStorm 
+8. Firebase
+9. Postman 
+10. PHPStorm 
