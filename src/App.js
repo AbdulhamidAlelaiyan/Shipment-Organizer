@@ -13,7 +13,8 @@ class App extends Component {
         this.state = {
             shipmentsInDelivery: [],
             shipmentsDelivered: [],
-            shipmentId: 'Please select a shipment to track',
+            shipmentTrackingNumber: 'Please select a shipment to track',
+            shipmentCheckpoints: [],
             importantItems: [],
             alertMessage: {message: '', status: ''},
         };
@@ -49,6 +50,9 @@ class App extends Component {
             }))
             .catch(response => {
                 console.log(response);
+                this.setState({
+                    alertMessage: {message: 'Error in Shipment Addition', status: 'danger'},
+                });
             });
     };
 
@@ -68,6 +72,9 @@ class App extends Component {
             }))
             .catch(response => {
                 console.log(response);
+                this.setState({
+                    alertMessage: {message: 'Error in Shipment Deletion', status: 'danger'},
+                });
             });
     };
 
@@ -89,6 +96,9 @@ class App extends Component {
               }))
               .catch(response => {
                   console.log(response);
+                  this.setState({
+                      alertMessage: {message: 'Error in deleting shipments', status: 'danger'},
+                  });
               });
       });
     };
@@ -111,6 +121,9 @@ class App extends Component {
               }))
               .catch(response => {
                   console.log(response);
+                  this.setState({
+                      alertMessage: {message: 'Error in deleting shipments', status: 'danger'},
+                  });
               });
           this.fetchShipments();
       }));
@@ -134,6 +147,9 @@ class App extends Component {
                 }))
                 .catch(response => {
                     console.log(response);
+                    this.setState({
+                        alertMessage: {message: 'Error in deleting shipments', status: 'danger'},
+                    });
                 });
         }));
     };
@@ -162,6 +178,23 @@ class App extends Component {
         this.fetchShipments();
     }
 
+    fetchShipmentTracking = (id) => {
+        axios({
+            method: 'get',
+            url: `https://api.aftership.com/v4/trackings/${id}`,
+            headers:
+                {'aftership-api-key': '8742d0d1-9845-4c2f-8dfa-ed28c3430c2a',}
+        })
+            .then(response => {
+                this.setState({
+                    shipmentCheckpoints: response.data.data.tracking.checkpoints,
+                });
+            })
+            .catch(response => {
+                console.log(response);
+            });
+    };
+
     fetchShipments = () => {
         axios({
             method: 'get',
@@ -181,6 +214,9 @@ class App extends Component {
             })
             .catch(response => {
                 console.log(response);
+                this.setState({
+                    alertMessage: {message: 'Error in getting shipments', status: 'danger'},
+                });
             });
     };
 
@@ -196,10 +232,12 @@ class App extends Component {
                 <Row>
                     <Col><Shipments title='shipments on the way' shipments={this.state.shipmentsInDelivery}
                                     deleteShipment={this.deleteShipment} markImportant={this.markImportant}
-                                    importantItems={this.state.importantItems}/></Col>
+                                    importantItems={this.state.importantItems}
+                                    fetchShipmentTracking={this.fetchShipmentTracking}/></Col>
                     <Col><Shipments title='shipments delivered' shipments={this.state.shipmentsDelivered}
                                     deleteShipment={this.deleteShipment} markImportant={this.markImportant}
-                                    importantItems={this.state.importantItems}/></Col>
+                                    importantItems={this.state.importantItems}
+                                    fetchShipmentTracking={this.fetchShipmentTracking}/></Col>
                 </Row>
                 <Row>
                     <Col>
@@ -218,7 +256,7 @@ class App extends Component {
                     </Col>
                 </Row>
                 <hr/>
-                <ShipmentTracker title='shipment checkpoint' shipmentId={this.state.shipmentId}/>
+                <ShipmentTracker title='shipment checkpoint' shipmentCheckpoints={this.state.shipmentCheckpoints}/>
             </Container>
         );
     }

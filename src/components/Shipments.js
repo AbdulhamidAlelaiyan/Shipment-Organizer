@@ -7,8 +7,12 @@ export default class Shipments extends React.Component {
         return this.props.shipments.map((shipment, key) => {
             let important = false;
             if(this.props.importantItems.includes(shipment.id)) important = true;
-           return <Shipment shipment={shipment} key={key} deleteShipment={this.props.deleteShipment}
-                            markImportant={() => this.props.markImportant(shipment.id)} important={important}/>
+           return <Shipment shipment={shipment}
+                            key={key}
+                            deleteShipment={this.props.deleteShipment}
+                            markImportant={() => this.props.markImportant(shipment.id)}
+                            important={important}
+                            fetchShipmentTracking={this.props.fetchShipmentTracking}/>
         });
     };
 

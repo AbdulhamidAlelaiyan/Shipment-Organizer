@@ -15,7 +15,7 @@ export default class Shipment extends React.Component {
           <>
               <ListGroupItem className={"justify-content-between" + (this.props.important ? ' bg-primary' : '')}>
                     <Badge className='mr-3'>{this.props.shipment.slug.toUpperCase()}</Badge>
-                    {this.props.shipment.tracking_number} ||
+                    <span onClick={() => this.props.fetchShipmentTracking(this.props.shipment.id)}>{this.props.shipment.tracking_number}</span> ||
                   {     ! this.state.editor
                         ? <span onClick={() => this.setState({editor: !this.state.editor})}>{localStorage.getItem(this.props.shipment.id)}</span>
                         : <form onSubmit={() => {localStorage.setItem(this.props.shipment.id, this.state.newNickname);
