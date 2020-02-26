@@ -15,7 +15,7 @@ import PropTypes from 'prop-types';
 class Shipments extends React.Component {
 
     /**
-     *
+     * Validator of data passed from a parent component
      * @type {{markImportant: {Function}, fetchShipmentTracking: {Function}, importantItems: {Array}, title: {String},
      * shipments: {Array<Object>}, deleteShipment: {Function}}}
      */
@@ -31,6 +31,7 @@ class Shipments extends React.Component {
     /**
      * Map shipments objects into shipments components
      * @returns {Array}
+     * @function
      */
     mapShipments = () => {
         return this.props.shipments.map((shipment, key) => {

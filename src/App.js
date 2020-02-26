@@ -19,7 +19,7 @@ import base from "./base";
 class App extends Component {
     /**
      * Deliver the props to the parent constructor and set the initial values of the state
-     * @param props
+     * @param props {Object} properties to be passed to the parent constructor
      */
     constructor(props) {
         super(props);
@@ -41,6 +41,7 @@ class App extends Component {
      * Add a new shipment to the API Database
      * @param {number} tracking_number Shipment Tracking number
      * @param {string} nickname Nickname given to the shipment that will be synced with localstorage
+     * @function
      */
     addNewShipment = (tracking_number, nickname) => {
         axios({
@@ -82,6 +83,7 @@ class App extends Component {
      * Delete shipment from the api server database
      * @param {number} id The id given by the api to the shipment (not the shipment number)
      * @returns {void}
+     * @function
      */
     deleteShipment = (id) => {
         axios({
@@ -108,6 +110,7 @@ class App extends Component {
     /**
      * Delete all shipments from the api server database
      * @returns {void}
+     * @function
      */
     deleteAllShipments = () => {
       const shipments = [...this.state.shipmentsDelivered, ...this.state.shipmentsInDelivery];
@@ -137,6 +140,7 @@ class App extends Component {
     /**
      * Delete in delivery shipments only
      * @return {void}
+     * @function
      */
     deleteInDeliveryShipments = () => {
       const InDeliveryShipments = [...this.state.shipmentsInDelivery];
@@ -167,6 +171,7 @@ class App extends Component {
     /**
      * Delete delivered shipments from the api database
      * @returns {void}
+     * @function
      */
     deleteDeliveredShipments = () => {
         const DeliveredShipments = [...this.state.shipmentsDelivered];
@@ -195,6 +200,7 @@ class App extends Component {
 
     /**
      * Delete unimportant shipments from the database server
+     * @function
      */
     deleteAllUnImportantShipments = () => {
         this.state.shipmentsInDelivery.forEach(shipment =>  !this.state.importantItems.includes(shipment.id)
@@ -209,6 +215,7 @@ class App extends Component {
      *  Mark a shipment with specific id as important
      * @param {number} id The id of the shipment that will be marked
      * @returns {void}
+     * @function
      */
     markImportant = (id) => {
         if(this.state.importantItems.includes(id)) {
@@ -246,6 +253,7 @@ class App extends Component {
      * Fetch a single shipment of the user from the api database
      * @param {number} id ID of the shipment to be fetched
      * @returns {void}
+     * @function
      */
     fetchShipmentTracking = (id) => {
         axios({
@@ -267,6 +275,7 @@ class App extends Component {
     /**
      * Fetch all shipments from the api database
      * @returns {void}
+     * @function
      */
     fetchShipments = () => {
         axios({

@@ -40,11 +40,13 @@ class ShipmentAdder extends Component {
     /**
      * Update the state value of NewShipmentNumber to the last value entered by the user
      * @param {Object} event
+     * @function
      */
     updateNewShipmentNumber = (event) => this.setState({NewShipmentNumber: event.target.value});
     /**
      * Update the state value of NewShipmentNickname to the last value entered by the user
      * @param {Object} event
+     * @function
      */
     updateNewShipmentNickname = (event) => this.setState({NewShipmentNickname: event.target.value});
 
