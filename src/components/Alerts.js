@@ -14,7 +14,6 @@ import PropTypes from 'prop-types';
 class Alerts extends Component {
     /**
      * Validator of data passed from a parent component
-     * @type {{alertMessage: {Function}<{message: string, status: string}>}}
      */
     static propTypes = {
         alertMessage: PropTypes.shape({
