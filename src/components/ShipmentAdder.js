@@ -1,3 +1,8 @@
+/**
+ * @file App.js is the root react component for the app
+ * @author Abdulhamid Alelaiyan
+ * @see <a href="https://github.com/AbdulhamidAlelaiyan/Shipment-Organizer"></a>
+ */
 import React, {Component} from 'react';
 import {Input, Button, Row, Col} from 'reactstrap';
 import PropTypes from 'prop-types';

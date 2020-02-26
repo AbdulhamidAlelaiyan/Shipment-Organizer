@@ -1,3 +1,8 @@
+/**
+ * @file App.js is the root react component for the app
+ * @author Abdulhamid Alelaiyan
+ * @see <a href="https://github.com/AbdulhamidAlelaiyan/Shipment-Organizer"></a>
+ */
 import React from 'react';
 import {ListGroup, ListGroupItem} from "reactstrap";
 

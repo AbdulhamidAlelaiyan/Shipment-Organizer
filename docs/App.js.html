@@ -1,7 +1,35 @@
-/**
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: App.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: App.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
  * @file App.js is the root react component for the app
  * @author Abdulhamid Alelaiyan
- * @see <a href="https://github.com/AbdulhamidAlelaiyan/Shipment-Organizer"></a>
+ * @see &lt;a href="https://github.com/AbdulhamidAlelaiyan/Shipment-Organizer">&lt;/a>
  */
 import React, {Component} from 'react';
 import Shipments from "./components/Shipments";
@@ -14,7 +42,6 @@ import base from "./base";
 
 /**
  * The App component that will be the first component mounted
- * @extends Component
  */
 class App extends Component {
     /**
@@ -23,10 +50,6 @@ class App extends Component {
      */
     constructor(props) {
         super(props);
-        /**
-         *
-         * @type {{alertMessage: {message: string, status: string}, shipmentTrackingNumber: string, importantItems: Array<number>, shipmentsDelivered: Array<Object>, shipmentsInDelivery: Array<Object>, shipmentCheckpoints: Array<Object>}}
-         */
         this.state = {
             shipmentsInDelivery: [],
             shipmentsDelivered: [],
@@ -300,44 +323,66 @@ class App extends Component {
      */
     render() {
         return (
-            <Container>
-                <h1 className='text-center'>📦Shipments Organizer📦</h1>
-                <Alerts alertMessage={this.state.alertMessage}/>
-                <ShipmentAdder addNewShipment={this.addNewShipment}/>
-                <Row className='justify-content-center'>
-                    <Button color='success'  className='mt-5' onClick={this.fetchShipments}>Refresh Shipment Data</Button>
-                </Row>
-                <Row>
-                    <Col><Shipments title='shipments on the way' shipments={this.state.shipmentsInDelivery}
+            &lt;Container>
+                &lt;h1 className='text-center'>📦Shipments Organizer📦&lt;/h1>
+                &lt;Alerts alertMessage={this.state.alertMessage}/>
+                &lt;ShipmentAdder addNewShipment={this.addNewShipment}/>
+                &lt;Row className='justify-content-center'>
+                    &lt;Button color='success'  className='mt-5' onClick={this.fetchShipments}>Refresh Shipment Data&lt;/Button>
+                &lt;/Row>
+                &lt;Row>
+                    &lt;Col>&lt;Shipments title='shipments on the way' shipments={this.state.shipmentsInDelivery}
                                     deleteShipment={this.deleteShipment} markImportant={this.markImportant}
                                     importantItems={this.state.importantItems}
-                                    fetchShipmentTracking={this.fetchShipmentTracking}/></Col>
-                    <Col><Shipments title='shipments delivered' shipments={this.state.shipmentsDelivered}
+                                    fetchShipmentTracking={this.fetchShipmentTracking}/>&lt;/Col>
+                    &lt;Col>&lt;Shipments title='shipments delivered' shipments={this.state.shipmentsDelivered}
                                     deleteShipment={this.deleteShipment} markImportant={this.markImportant}
                                     importantItems={this.state.importantItems}
-                                    fetchShipmentTracking={this.fetchShipmentTracking}/></Col>
-                </Row>
-                <Row>
-                    <Col>
-                        <Button color='danger' className='mt-2' onClick={this.deleteInDeliveryShipments}>Delete All In Delivery Shipments</Button>
-                    </Col>
-                    <Col>
-                        <Button color='danger' className='mt-2' onClick={this.deleteDeliveredShipments}>Delete All Delivered Shipments</Button>
-                    </Col>
-                </Row>
-                <Row className='justify-content-center'>
-                    <Col>
-                        <Button color='danger' className='mt-5 text-center' onClick={this.deleteAllShipments}>!!! Delete All Shipments !!!</Button>
-                    </Col>
-                    <Col>
-                        <Button color='danger' className='mt-5 text-center' onClick={this.deleteAllUnImportantShipments}>!!! Delete All Unimportant Shipments !!!</Button>
-                    </Col>
-                </Row>
-                <hr/>
-                <ShipmentTracker shipmentCheckpoints={this.state.shipmentCheckpoints}/>
-            </Container>
+                                    fetchShipmentTracking={this.fetchShipmentTracking}/>&lt;/Col>
+                &lt;/Row>
+                &lt;Row>
+                    &lt;Col>
+                        &lt;Button color='danger' className='mt-2' onClick={this.deleteInDeliveryShipments}>Delete All In Delivery Shipments&lt;/Button>
+                    &lt;/Col>
+                    &lt;Col>
+                        &lt;Button color='danger' className='mt-2' onClick={this.deleteDeliveredShipments}>Delete All Delivered Shipments&lt;/Button>
+                    &lt;/Col>
+                &lt;/Row>
+                &lt;Row className='justify-content-center'>
+                    &lt;Col>
+                        &lt;Button color='danger' className='mt-5 text-center' onClick={this.deleteAllShipments}>!!! Delete All Shipments !!!&lt;/Button>
+                    &lt;/Col>
+                    &lt;Col>
+                        &lt;Button color='danger' className='mt-5 text-center' onClick={this.deleteAllUnImportantShipments}>!!! Delete All Unimportant Shipments !!!&lt;/Button>
+                    &lt;/Col>
+                &lt;/Row>
+                &lt;hr/>
+                &lt;ShipmentTracker shipmentCheckpoints={this.state.shipmentCheckpoints}/>
+            &lt;/Container>
         );
     }
 }
 
-export default App;
+export default App;</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="App.html">App</a></li><li><a href="ShipmentAdder.html">ShipmentAdder</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.3</a> on Wed Feb 26 2020 10:12:32 GMT+0300 (Arabian Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
