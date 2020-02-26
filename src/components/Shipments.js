@@ -12,7 +12,7 @@ import PropTypes from 'prop-types';
  * Shipments component is responsible for containing shipments components
  * @extends React.Component
  */
-export default class Shipments extends React.Component {
+class Shipments extends React.Component {
 
     /**
      *
@@ -61,3 +61,4 @@ export default class Shipments extends React.Component {
         );
     }
 }
+export default Shipments;

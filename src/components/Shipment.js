@@ -11,7 +11,7 @@ import PropTypes from 'prop-types';
  * Shipment component that will hold all the information about a specific shipment
  * @extends React.Component
  */
-export default class Shipment extends React.Component {
+class Shipment extends React.Component {
     /**
      * Deliver the props to the parent constructor and set the initial values of the state
      * @param props
@@ -58,3 +58,5 @@ export default class Shipment extends React.Component {
         );
     }
 }
+
+export default Shipment;

@@ -8,8 +8,9 @@ import {ListGroup, ListGroupItem} from "reactstrap";
 
 /**
  * A component that responsible for showing the checkpoints of a specific shipment
+ * @extends React.Component
  */
-export default class ShipmentTracker extends React.Component {
+class ShipmentTracker extends React.Component {
     /**
      * A react lifecycle methods invoked when the DOM get mounted and asks for the components inside to be
      * rendered.
@@ -30,3 +31,5 @@ export default class ShipmentTracker extends React.Component {
         );
     }
 }
+
+export default ShipmentTracker;
