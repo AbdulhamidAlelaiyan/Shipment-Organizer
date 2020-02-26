@@ -8,8 +8,17 @@ import Shipment from './Shipment';
 import {ListGroup} from "reactstrap";
 import PropTypes from 'prop-types';
 
+/**
+ * Shipments component is responsible for containing shipments components
+ * @extends React.Component
+ */
 export default class Shipments extends React.Component {
 
+    /**
+     *
+     * @type {{markImportant: {Function}, fetchShipmentTracking: {Function}, importantItems: {Array}, title: {String},
+     * shipments: {Array<Object>}, deleteShipment: {Function}}}
+     */
     static propTypes = {
         title: PropTypes.string.isRequired,
         shipments: PropTypes.array.isRequired,
@@ -19,6 +28,10 @@ export default class Shipments extends React.Component {
         fetchShipmentTracking: PropTypes.func.isRequired,
     };
 
+    /**
+     * Map shipments objects into shipments components
+     * @returns {Array}
+     */
     mapShipments = () => {
         return this.props.shipments.map((shipment, key) => {
             let important = false;
@@ -32,6 +45,11 @@ export default class Shipments extends React.Component {
         });
     };
 
+    /**
+     * A react lifecycle methods invoked when the DOM get mounted and asks for the components inside to be
+     * rendered.
+     * @returns {*}
+     */
     render() {
         return (
           <>
