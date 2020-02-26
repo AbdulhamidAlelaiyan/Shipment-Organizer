@@ -7,7 +7,15 @@ import React from 'react';
 import {Badge, ListGroupItem, Button, Input} from "reactstrap";
 import PropTypes from 'prop-types';
 
+/**
+ * Shipment component that will hold all the information about a specific shipment
+ * @extends React.Component
+ */
 export default class Shipment extends React.Component {
+    /**
+     * Deliver the props to the parent constructor and set the initial values of the state
+     * @param props
+     */
     constructor(props) {
         super(props);
 
@@ -17,6 +25,11 @@ export default class Shipment extends React.Component {
         };
     }
 
+    /**
+     * A react lifecycle methods invoked when the DOM get mounted and asks for the components inside to be
+     * rendered.
+     * @returns {*}
+     */
     render() {
         return (
           <>

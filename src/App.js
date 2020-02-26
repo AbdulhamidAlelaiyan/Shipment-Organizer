@@ -18,7 +18,7 @@ import base from "./base";
  */
 class App extends Component {
     /**
-     *
+     * Deliver the props to the parent constructor and set the initial values of the state
      * @param props
      */
     constructor(props) {
