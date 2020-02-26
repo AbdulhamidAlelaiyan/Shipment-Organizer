@@ -7,7 +7,15 @@ import React, {Component} from 'react';
 import {Alert} from 'reactstrap';
 import PropTypes from 'prop-types';
 
+/**
+ * A component that responsible for showing alerts send from the parent component (App)
+ * @extends React.Component
+ */
 class Alerts extends Component {
+    /**
+     * Validator of data passed from a parent component
+     * @type {{alertMessage: {Function}<{message: string, status: string}>}}
+     */
     static propTypes = {
         alertMessage: PropTypes.shape({
             status: PropTypes.string.isRequired,
@@ -15,6 +23,11 @@ class Alerts extends Component {
         }).isRequired,
     };
 
+    /**
+     * A react lifecycle methods invoked when the DOM get mounted and asks for the components inside to be
+     * rendered.
+     * @returns {*}
+     */
     render() {
         if(this.props.alertMessage.message) return (
             <>
