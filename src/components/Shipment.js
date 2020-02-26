@@ -19,6 +19,10 @@ export default class Shipment extends React.Component {
     constructor(props) {
         super(props);
 
+        /**
+         * Set the initial values of the state
+         * @type {{editor: boolean, newNickname: string}}
+         */
         this.state = {
             editor: false,
             newNickname: localStorage.getItem(this.props.shipment.id),

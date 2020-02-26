@@ -6,7 +6,15 @@
 import React from 'react';
 import {ListGroup, ListGroupItem} from "reactstrap";
 
+/**
+ * A component that responsible for showing the checkpoints of a specific shipment
+ */
 export default class ShipmentTracker extends React.Component {
+    /**
+     * A react lifecycle methods invoked when the DOM get mounted and asks for the components inside to be
+     * rendered.
+     * @returns {*}
+     */
     render() {
         return (
           <>

@@ -24,7 +24,7 @@ class App extends Component {
     constructor(props) {
         super(props);
         /**
-         *
+         * Set the initial values of the state
          * @type {{alertMessage: {message: string, status: string}, shipmentTrackingNumber: string, importantItems: Array<number>, shipmentsDelivered: Array<Object>, shipmentsInDelivery: Array<Object>, shipmentCheckpoints: Array<Object>}}
          */
         this.state = {
@@ -38,7 +38,7 @@ class App extends Component {
     }
 
     /**
-     *
+     * Add a new shipment to the API Database
      * @param {number} tracking_number Shipment Tracking number
      * @param {string} nickname Nickname given to the shipment that will be synced with localstorage
      */
