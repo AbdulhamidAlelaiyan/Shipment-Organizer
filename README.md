@@ -21,5 +21,7 @@ A React shipment app that organize shipments into lists
 8. JSDoc
 9. PropTypes
 10. Firebase
-11. Postman 
-12. PHPStorm 
+11. re-base 
+12. websocket 
+13. Postman 
+14. PHPStorm 
