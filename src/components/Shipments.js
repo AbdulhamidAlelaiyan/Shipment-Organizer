@@ -54,7 +54,6 @@ class Shipments extends React.Component {
     render() {
         return (
           <>
-              <h5 className='mt-5'>{this.props.title}</h5>
               <ListGroup>
                   {this.mapShipments()}
               </ListGroup>

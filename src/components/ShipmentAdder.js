@@ -58,14 +58,14 @@ class ShipmentAdder extends Component {
     render() {
         return (
             <Row className='align-items-center justify-content-center'>
-                <Col>New Shipment: <Input onChange={this.updateNewShipmentNumber} type="text"/></Col>
-                <Col>Nickname:     <Input onChange={this.updateNewShipmentNickname} type="text"/></Col>
+                Shipment No. <Input onChange={this.updateNewShipmentNumber} type="text"/>
+                Nickname <Input onChange={this.updateNewShipmentNickname} type="text"/>
 
-                <Col><Button onClick={() => this.state.NewShipmentNumber && this.state.NewShipmentNickname
+                <Button onClick={() => this.state.NewShipmentNumber && this.state.NewShipmentNickname
                     ? this.props.addNewShipment(this.state.NewShipmentNumber, this.state.NewShipmentNickname)
                     : null}
-                        className='primary mt-3'>Add Shipment</Button>
-                </Col>
+                        className='primary mt-3'>Add Shipment ➕</Button>
+
             </Row>
         );
     }

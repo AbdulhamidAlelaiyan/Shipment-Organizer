@@ -312,21 +312,23 @@ class App extends Component {
             <Container>
                 <h1 className='text-center'>📦Shipments Organizer📦</h1>
                 <Alerts alertMessage={this.state.alertMessage}/>
-                <ShipmentAdder addNewShipment={this.addNewShipment}/>
+                <Row>
+                    <Col className='mt-5 text-center'><h5>New Shipment</h5><ShipmentAdder addNewShipment={this.addNewShipment}/></Col>
+                </Row>
                 <Row className='justify-content-center'>
-                    <Button color='success'  className='mt-5' onClick={this.fetchShipments}>Refresh Shipment Data</Button>
+                    <Button outline color='primary' className='mt-5 btn-lg' onClick={this.fetchShipments}>🔄</Button>
                 </Row>
                 <Row>
-                    <Col><Shipments title='shipments on the way' shipments={this.state.shipmentsInDelivery}
-                                    deleteShipment={this.deleteShipment} markImportant={this.markImportant}
-                                    importantItems={this.state.importantItems}
-                                    fetchShipmentTracking={this.fetchShipmentTracking}/></Col>
-                    <Col><Shipments title='shipments delivered' shipments={this.state.shipmentsDelivered}
-                                    deleteShipment={this.deleteShipment} markImportant={this.markImportant}
-                                    importantItems={this.state.importantItems}
-                                    fetchShipmentTracking={this.fetchShipmentTracking}/></Col>
+                    <Col className='mt-5 text-center'><h5>Ongoing Shipments</h5><Shipments shipments={this.state.shipmentsInDelivery}
+                                                                                           deleteShipment={this.deleteShipment} markImportant={this.markImportant}
+                                                                                           importantItems={this.state.importantItems}
+                                                                                           fetchShipmentTracking={this.fetchShipmentTracking}/></Col>
+                    <Col className='mt-5 text-center'><h5>Delivered Shipments</h5><Shipments shipments={this.state.shipmentsDelivered}
+                                                                                             deleteShipment={this.deleteShipment} markImportant={this.markImportant}
+                                                                                             importantItems={this.state.importantItems}
+                                                                                             fetchShipmentTracking={this.fetchShipmentTracking}/></Col>
                 </Row>
-                <Row>
+                <Row className='text-center'>
                     <Col>
                         <Button color='danger' className='mt-2' onClick={this.deleteInDeliveryShipments}>Delete All In Delivery Shipments</Button>
                     </Col>
@@ -334,12 +336,13 @@ class App extends Component {
                         <Button color='danger' className='mt-2' onClick={this.deleteDeliveredShipments}>Delete All Delivered Shipments</Button>
                     </Col>
                 </Row>
-                <Row className='justify-content-center'>
+                <Row className='text-center'>
                     <Col>
-                        <Button color='danger' className='mt-5 text-center' onClick={this.deleteAllShipments}>!!! Delete All Shipments !!!</Button>
+                        <Button color='danger' className='mt-5 text-center' onClick={this.deleteAllShipments}>Delete All Shipments</Button>
                     </Col>
                     <Col>
-                        <Button color='danger' className='mt-5 text-center' onClick={this.deleteAllUnImportantShipments}>!!! Delete All Unimportant Shipments !!!</Button>
+                        <Button color='danger' className='mt-5 text-center' onClick={this.deleteAllUnImportantShipments}>
+                            Delete All Unimportant Shipment</Button>
                     </Col>
                 </Row>
                 <hr/>

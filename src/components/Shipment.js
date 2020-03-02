@@ -39,7 +39,7 @@ class Shipment extends React.Component {
           <>
               <ListGroupItem className={"justify-content-between" + (this.props.important ? ' bg-primary' : '')}>
                     <Badge className='mr-3'>{this.props.shipment.slug.toUpperCase()}</Badge>
-                    <span onClick={() => this.props.fetchShipmentTracking(this.props.shipment.id)}>{this.props.shipment.tracking_number}</span> ||
+                    <span onClick={() => this.props.fetchShipmentTracking(this.props.shipment.id)}>{this.props.shipment.tracking_number}</span> - {'  '}
                   {     ! this.state.editor
                         ? <span onClick={() => this.setState({editor: !this.state.editor})}>{localStorage.getItem(this.props.shipment.id)}</span>
                         : <form onSubmit={() => {localStorage.setItem(this.props.shipment.id, this.state.newNickname);
@@ -50,9 +50,9 @@ class Shipment extends React.Component {
                           </form>
                   }
                     <Badge pill className='ml-3'>{this.props.shipment.tag}</Badge>
-                    <Button color='danger' className='ml-3 btn-sm'
-                            onClick={() => this.props.deleteShipment(this.props.shipment.id)}>Delete</Button> {' '}
-                    <Button className='btn-sm' color='primary' onClick={this.props.markImportant}>Important</Button>
+                    <Button outline className='ml-3 btn-sm'
+                            onClick={() => this.props.deleteShipment(this.props.shipment.id)}>✖️</Button> {' '}
+                    <Button outline color='success' className='btn-sm' onClick={this.props.markImportant}>✅</Button>
               </ListGroupItem>
           </>
         );
