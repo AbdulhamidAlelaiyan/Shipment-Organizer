@@ -57,7 +57,7 @@ class ShipmentAdder extends Component {
      */
     render() {
         return (
-            <Row className='align-items-center justify-content-center'>
+            <div className='align-items-center justify-content-center border rounded p-2'>
                 Shipment No. <Input onChange={this.updateNewShipmentNumber} type="text"/>
                 Nickname <Input onChange={this.updateNewShipmentNickname} type="text"/>
 
@@ -66,7 +66,7 @@ class ShipmentAdder extends Component {
                     : null}
                         className='primary mt-3'>Add ➕</Button>
 
-            </Row>
+            </div>
         );
     }
 }

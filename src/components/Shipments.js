@@ -54,7 +54,7 @@ class Shipments extends React.Component {
     render() {
         return (
           <>
-              <ListGroup>
+              <ListGroup className=''>
                   {this.mapShipments()}
               </ListGroup>
           </>

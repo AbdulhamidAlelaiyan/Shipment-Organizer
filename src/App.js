@@ -327,13 +327,15 @@ class App extends Component {
                 <Alerts alertMessage={this.state.alertMessage}/>
                 <Row>
                     <Col xs='9' className='mt-5 text-center'><h5 className='mb-3'>Shipment Addition</h5><ShipmentAdder addNewShipment={this.addNewShipment}/></Col>
-                    <Col className='mt-5 text-center'>
+                    <Col className='mt-5 text-center ml-2'>
                         <h5 className='mb-3'>Shipment Deletion</h5>
-                        <Button color='danger' className='mt-2 btn-block' onClick={this.deleteAllUnImportantShipments}>
-                            Delete All Unimportant</Button>
-                            <Button color='danger' className='mt-2 btn-block' onClick={this.deleteInDeliveryShipments}>Delete All In Delivery</Button>
-                            <Button color='danger' className='mt-2 btn-block' onClick={this.deleteDeliveredShipments}>Delete All Delivered</Button>
-                        <Button color='danger' className='mt-2 btn-block' onClick={this.deleteAllShipments}>Delete All</Button>
+                        <div className='border rounded p-2'>
+                            <Button color='danger' className='mt-2 btn-block' onClick={this.deleteAllUnImportantShipments}>
+                                Delete All Unimportant</Button>
+                                <Button color='danger' className='mt-2 btn-block' onClick={this.deleteInDeliveryShipments}>Delete All In Delivery</Button>
+                                <Button color='danger' className='mt-2 btn-block' onClick={this.deleteDeliveredShipments}>Delete All Delivered</Button>
+                            <Button color='danger' className='mt-2 btn-block' onClick={this.deleteAllShipments}>Delete All</Button>
+                        </div>
                     </Col>
                 </Row>
                 {/*<Row className='justify-content-center'>*/}
