@@ -30,7 +30,7 @@ class Alerts extends Component {
     render() {
         if(this.props.alertMessage.message) return (
             <>
-                <Alert color={this.props.alertMessage.status}>
+                <Alert className='mt-3' color={this.props.alertMessage.status}>
                     {this.props.alertMessage.message}
                 </Alert>
             </>

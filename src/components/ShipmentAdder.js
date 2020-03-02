@@ -64,7 +64,7 @@ class ShipmentAdder extends Component {
                 <Button onClick={() => this.state.NewShipmentNumber && this.state.NewShipmentNickname
                     ? this.props.addNewShipment(this.state.NewShipmentNumber, this.state.NewShipmentNickname)
                     : null}
-                        className='primary mt-3'>Add Shipment ➕</Button>
+                        className='primary mt-3'>Add ➕</Button>
 
             </Row>
         );

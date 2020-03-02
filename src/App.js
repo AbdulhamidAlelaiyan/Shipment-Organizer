@@ -7,7 +7,11 @@ import React, {Component} from 'react';
 import Shipments from "./components/Shipments";
 import ShipmentTracker from "./components/ShipmentTracker";
 import ShipmentAdder from "./components/ShipmentAdder";
-import { Container, Col, Row, Button } from 'reactstrap';
+import { Container, Col, Row, Button, Collapse,
+    Navbar,
+    NavbarBrand,
+    Nav,
+    NavbarText } from 'reactstrap';
 import axios from 'axios';
 import Alerts from './components/Alerts';
 import base from "./base";
@@ -309,45 +313,45 @@ class App extends Component {
      */
     render() {
         return (
+            <>
+            <Navbar color="dark" dark expand="md">
+                <NavbarBrand href="/">📦{'         '}Shipments Organizer{'         '}📦</NavbarBrand>
+                <Collapse navbar>
+                    <Nav className="mr-auto" navbar>
+                    </Nav>
+                    <NavbarText><Button outline color='secondary' className='btn-sm' onClick={this.fetchShipments}>🔄</Button>
+                    </NavbarText>
+                </Collapse>
+            </Navbar>
             <Container>
-                <h1 className='text-center'>📦Shipments Organizer📦</h1>
                 <Alerts alertMessage={this.state.alertMessage}/>
                 <Row>
-                    <Col className='mt-5 text-center'><h5>New Shipment</h5><ShipmentAdder addNewShipment={this.addNewShipment}/></Col>
+                    <Col xs='9' className='mt-5 text-center'><h5 className='mb-3'>Shipment Addition</h5><ShipmentAdder addNewShipment={this.addNewShipment}/></Col>
+                    <Col className='mt-5 text-center'>
+                        <h5 className='mb-3'>Shipment Deletion</h5>
+                        <Button color='danger' className='mt-2 btn-block' onClick={this.deleteAllUnImportantShipments}>
+                            Delete All Unimportant</Button>
+                            <Button color='danger' className='mt-2 btn-block' onClick={this.deleteInDeliveryShipments}>Delete All In Delivery</Button>
+                            <Button color='danger' className='mt-2 btn-block' onClick={this.deleteDeliveredShipments}>Delete All Delivered</Button>
+                        <Button color='danger' className='mt-2 btn-block' onClick={this.deleteAllShipments}>Delete All</Button>
+                    </Col>
                 </Row>
-                <Row className='justify-content-center'>
-                    <Button outline color='primary' className='mt-5 btn-lg' onClick={this.fetchShipments}>🔄</Button>
-                </Row>
+                {/*<Row className='justify-content-center'>*/}
+                {/*</Row>*/}
                 <Row>
-                    <Col className='mt-5 text-center'><h5>Ongoing Shipments</h5><Shipments shipments={this.state.shipmentsInDelivery}
+                    <Col className='mt-5 text-center'><h5>Shipments</h5><Shipments shipments={this.state.shipmentsInDelivery.concat(this.state.shipmentsDelivered)}
                                                                                            deleteShipment={this.deleteShipment} markImportant={this.markImportant}
                                                                                            importantItems={this.state.importantItems}
                                                                                            fetchShipmentTracking={this.fetchShipmentTracking}/></Col>
-                    <Col className='mt-5 text-center'><h5>Delivered Shipments</h5><Shipments shipments={this.state.shipmentsDelivered}
-                                                                                             deleteShipment={this.deleteShipment} markImportant={this.markImportant}
-                                                                                             importantItems={this.state.importantItems}
-                                                                                             fetchShipmentTracking={this.fetchShipmentTracking}/></Col>
-                </Row>
-                <Row className='text-center'>
-                    <Col>
-                        <Button color='danger' className='mt-2' onClick={this.deleteInDeliveryShipments}>Delete All In Delivery Shipments</Button>
-                    </Col>
-                    <Col>
-                        <Button color='danger' className='mt-2' onClick={this.deleteDeliveredShipments}>Delete All Delivered Shipments</Button>
-                    </Col>
-                </Row>
-                <Row className='text-center'>
-                    <Col>
-                        <Button color='danger' className='mt-5 text-center' onClick={this.deleteAllShipments}>Delete All Shipments</Button>
-                    </Col>
-                    <Col>
-                        <Button color='danger' className='mt-5 text-center' onClick={this.deleteAllUnImportantShipments}>
-                            Delete All Unimportant Shipment</Button>
-                    </Col>
+                    {/*<Col className='mt-5 text-center'><h5>Delivered Shipments</h5><Shipments shipments={this.state.shipmentsDelivered}*/}
+                    {/*                                                                         deleteShipment={this.deleteShipment} markImportant={this.markImportant}*/}
+                    {/*                                                                         importantItems={this.state.importantItems}*/}
+                    {/*                                                                         fetchShipmentTracking={this.fetchShipmentTracking}/></Col>*/}
                 </Row>
                 <hr/>
                 <ShipmentTracker shipmentCheckpoints={this.state.shipmentCheckpoints}/>
             </Container>
+                </>
         );
     }
 }
